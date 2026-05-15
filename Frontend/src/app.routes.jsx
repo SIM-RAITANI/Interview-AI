@@ -4,15 +4,16 @@ import Register from "./features/auth/pages/Register";
 import Home from "./features/interview/pages/Home";
 import Protected from "./features/auth/components/Protected";
 import Interview from "./features/interview/pages/Interview";
+import AuthRoute from "./features/auth/components/AuthRoute";
 
 const router = createBrowserRouter([
     {
         path:'/login',
-        element:<Login/>
+        element:<AuthRoute><Login/></AuthRoute>
     },
     {
         path:'/register',
-        element:<Register/>
+        element:<AuthRoute><Register/></AuthRoute>
     },
     {
         path:'/',

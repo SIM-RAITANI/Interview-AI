@@ -91,3 +91,21 @@ export const generateResumePdfController=async(req,res)=>{
 
     res.send(pdfBuffer)
 }
+
+export const deleteInterviewReportController=async(req,res)=>{
+    try {
+        const { interviewId } = req.params;
+        const report = await interviewReportModel.findOneAndDelete({ 
+            _id: interviewId, 
+            user: req.user.id 
+        });
+
+        if (!report) {
+            return res.status(404).json({ message: "Report not found or unauthorized" });
+        }
+
+        res.status(200).json({ message: "Report deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ message: "Server error during deletion" });
+    }
+};

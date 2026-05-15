@@ -57,3 +57,13 @@ export const generateResumePdf=async({interviewReportId})=>{
         throw new Error(errorMessage);
     }
 }
+
+export const deleteInterviewReport = async (interviewId) => {
+    try {
+        const response = await API.delete(`/interview/${interviewId}`);
+        return response.data;
+    } catch (error) {
+        const errorMessage = error.response?.data?.message || "Failed to delete report";
+        throw new Error(errorMessage);
+    }
+};

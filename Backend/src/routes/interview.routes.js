@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { authMiddleware } from "../middlewares/auth.middleware.js";
 import upload from "../middlewares/file.middleware.js";
-import { generateInterviewReport,getInteviewReportById,getAllInterviewReportsController,generateResumePdfController } from "../controllers/interview.controller.js";
+import { generateInterviewReport,getInteviewReportById,getAllInterviewReportsController,generateResumePdfController, deleteInterviewReportController } from "../controllers/interview.controller.js";
 
 const interviewRouter=Router()
 
@@ -33,6 +33,13 @@ interviewRouter.get("/",authMiddleware,getAllInterviewReportsController)
  */
 interviewRouter.get("/resume/pdf/:interviewReportId", authMiddleware, generateResumePdfController)
 
+
+/**
+ * @route DELETE /api/interview/:interviewId
+ * @description Delete a specific interview report
+ * @access private
+ */
+interviewRouter.delete("/:interviewId", authMiddleware, deleteInterviewReportController);
 
 
 export default interviewRouter
